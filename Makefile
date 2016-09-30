@@ -5,7 +5,7 @@ VERSION := $(shell git describe --always --dirty)
 .PHONY: container push version clean
 
 sqspipe: $(SOURCES)
-	GOOS=linux GOARCH=amd64 go build .
+	GOOS=linux GOARCH=amd64 go build -ldflags "-X main.Version=${VERSION}" .
 
 container: sqspipe
 	docker build -t jharlap/sqspipe:$(VERSION) .
