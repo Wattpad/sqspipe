@@ -11,16 +11,16 @@ import (
 	"sync/atomic"
 	"time"
 
-	"golang.org/x/net/context"
-
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/sqs"
+	"golang.org/x/net/context"
 )
 
 var (
 	maxMessages = aws.Int64(10)
 	waitTime    = aws.Int64(20)
+	Version     = "UNKNOWN"
 )
 
 func main() {
@@ -50,6 +50,7 @@ func main() {
 		os.Exit(1)
 	}
 
+	fmt.Printf("Starting sqspipe version %s\n", Version)
 	p := &pipe{
 		SQS:            sqs.New(session.New(aws.NewConfig().WithMaxRetries(0))),
 		MaxIdle:        maxIdle,
