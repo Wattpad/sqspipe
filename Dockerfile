@@ -1,5 +1,5 @@
 FROM alpine:3.4
-MAINTAINER Jonathan Harlap <jharlap@users.noreply.github.com>
+MAINTAINER Wattpad <engineers@wattpad.com>
 
 RUN apk --update add ca-certificates
 COPY sqspipe /sqspipe
